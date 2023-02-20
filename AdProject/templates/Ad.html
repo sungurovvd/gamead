@@ -1,0 +1,20 @@
+{% extends 'default.html' %}
+
+
+{% block title %}
+Post
+{% endblock title %}
+
+{% block content %}
+<h1 style="text-align: center;">Объявление</h1>
+               <p style="text-align: center;">
+                   Дата публикации: {{ ad.date|date:'M d Y'  }}</p>
+
+               <p style="text-align: center;"> Автор: {{ad.author.username}}</p>
+               <p style="text-align: center;">
+                   Название: {{ ad.header }}</p>
+               <p style="text-align: center;">{{ ad.text }}</p>
+<form action="{{ad.id}}/create_answer" target="_blank">
+<button>Откликнуться {{ad.id}}</button>
+</form>>
+{% endblock content %}

@@ -1,0 +1,20 @@
+{% extends 'default.html' %}
+
+
+{% block title %}
+Создать Отклик
+{% endblock title %}
+ 
+
+{% block content %}
+        <!-- Page content-->
+<form action="" method="post">
+  {% csrf_token %}
+   <p> Создание Отклика:</p>
+  <p><label>Введите текст отклика: </label>
+  <input type="text" name="text" placeholder="Отклик"></p>
+    <input type="hidden" name="user" value="{{request.user.username}}">
+  <p> <input type="submit" value="Отправить" /></p>
+
+</form>
+{% endblock content %}
