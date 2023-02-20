@@ -40,8 +40,16 @@ INSTALLED_APPS = [
 
     'ckeditor',
     'ad',
+    'users',
+    'crispy_forms',
+    'crispy_bootstrap4',
     'ckeditor_uploader',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+LOGIN_REDIRECT_URL = 'ad_list'
+LOGIN_URL = 'login'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
