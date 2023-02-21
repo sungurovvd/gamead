@@ -1,0 +1,45 @@
+{% extends 'default.html' %}
+
+{% block title %}
+Создать объявление
+{% endblock title %}
+
+
+{% block content %}
+
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+   <p> Создание объявления:</p>
+  <p><label>Введите название объявления: </label>
+  {% if update == 'yes' %}
+      <input type="text" name="header" placeholder="Название" value = {{ad_upd.header}}></p>
+  {% else %}
+      <input type="text" name="header" placeholder="Название"></p>
+  {% endif %}
+  <p> <label>Текст: </label>
+  {% if update == 'yes' %}
+      <textarea name="text">{{ad_upd.text}}</textarea></p>
+  {% else %}
+      <textarea name="text">Введите текст новости </textarea></p>
+  {% endif %}
+  <p> <label>Категория: </label>
+  <select name="category1">
+      {% for category in categories %}
+          <option> {{ category.name}}</option>
+      {% endfor %}
+  </select></p>
+
+  <p><label>Изображения: </label>
+  {% if update == 'yes' %}
+      <input type="file" class="upload" name="image1" accept="image/*"  >
+      <input type="file" class="upload" name="image2" accept="image/*"  ></p>
+  {% else %}
+      <input type="file" class="upload" name="image1" accept="image/*" >
+      <input type="file" class="upload" name="image2" accept="image/*"></p>
+  {% endif %}
+  <input type="hidden" name="user" value="{{request.user.username}}">
+  <input type="hidden" name="updated" value='{{update}}'>
+  <p> <input type="submit" value="Сохранить" /></p>
+
+</form>
+{% endblock content %}

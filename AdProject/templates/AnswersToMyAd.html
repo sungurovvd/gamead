@@ -1,32 +1,32 @@
 {% extends 'default.html' %}
 {% block title %}
-Ads
+Answers
 {% endblock title %}
 
 {% block content %}
-    {% if ad %}
-       <h1>Все Объявления</h1>
+    {% if answers %}
+       <h1>Ответы на мои объявления</h1>
        <table>
            <tr>
-               <td>Номер объявления</td>
-               <td>Автор</td>
-               <td>Категория</td>
-               <td>Название</td>
-               <td>Дата</td>
+               <td>Номер ответа</td>
+               <td>От кого</td>
+               <td>Текст</td>
+               <td>Статус</td>
            </tr>
-           {% for a in ad %}
+           {% for answer in answers %}
+           {% if answer.ad.author.username == user.username%}
            <tr>
-               <td><a href = "ad/{{a.id}}">{{ a.id  }}</a></td>
-               <td>{{ a.author.username  }}</td>
-               <td> {{a.category.name}}</td>
-               <td>{{ a.header}}</td>
-               <td>{{ a.date }}</td>
+               <td><a href = "{{answer.id}}">{{ answer.id  }}</a></td>
+               <td>{{ answer.user.username  }}</td>
+               <td>{{ answer.text}}</td>
+               <td>{{ answer.status }}</td>
+           {% endif %}
 
            </tr>
            {% endfor %}
        </table>
     {% else %}
-       <h2>Объявлений нет!</h2>
+       <h2>Откликов нет!</h2>
     {% endif %}
 
 <div class="pagination">

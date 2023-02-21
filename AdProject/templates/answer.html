@@ -1,0 +1,24 @@
+{% extends 'default.html' %}
+
+
+{% block title %}
+Answer
+{% endblock title %}
+
+{% block content %}
+<h1 style="text-align: center;">Объявление</h1>
+               <p style="text-align: center;">
+                   Отклик на объявление: {{ answer.ad.header  }}</p>
+               <p style="text-align: center;"> Откликнулся: {{answer.user.username}}</p>
+               <p style="text-align: center;">
+                   Отклик: {{ answer.text }}</p>
+               <p style="text-align: center;">
+                   Статус: {{ answer.status }}</p>
+               <p style="text-align: center;">{{ ad.text }}</p>
+               {% if answer.status == 'На рассмотрении'%}
+                   <form action={{answer.id}}/confirm_answer>
+                       <button>Подтвердить {{answer.id}}</button></form>
+                   <form action={{answer.id}}/delete_answer>
+                       <button>Отклонить</button></form>
+               {% endif %}
+{% endblock content %}

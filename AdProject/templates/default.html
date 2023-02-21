@@ -29,12 +29,34 @@
 
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">logout</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'profile' %}">profile</a>
-                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item" disabled >
+                                <a class="nav-link" style="color: white;">{{user.username}}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'ad_list' %}">Все объявления</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'create_ad' %}">Создать объявление</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'answer_to_my_ad' %}">Ответы на мои объявления</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'my_answer' %}">Мои ответы</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'account_logout' %}">logout</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'account_login' %}">login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'account_signup' %}">signup</a>
+                            </li>
+                        {% endif %}
+
                     </ul>
                 </div>
 

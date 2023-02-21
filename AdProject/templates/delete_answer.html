@@ -1,0 +1,17 @@
+{% extends 'default.html' %}
+{% block title %}
+Удалить Отклик
+{% endblock title %}
+ 
+
+{% block content %}
+        <!-- Page content-->
+<form action="" method="post">
+  {% csrf_token %}
+
+    <input type="hidden" name="user" value="{{request.user.username}}">
+  <label>Отклонить отклик</label></p>
+  <p> <input type="submit" value="Отправить сообщение об удалении" /></p>
+
+</form>
+{% endblock content %}

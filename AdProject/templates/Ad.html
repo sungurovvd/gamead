@@ -14,7 +14,19 @@ Post
                <p style="text-align: center;">
                    Название: {{ ad.header }}</p>
                <p style="text-align: center;">{{ ad.text }}</p>
-<form action="{{ad.id}}/create_answer" target="_blank">
-<button>Откликнуться {{ad.id}}</button>
-</form>>
+               {% if ad.image1 != '' %}
+                   <img src="{{ad.image1.url}}" >
+               {% endif %}
+               {% if ad.image2 != '' %}
+                   <img src="{{ad.image2.url}}" >
+               {% endif %}
+               {% if ad.author.username == user.username%}
+               <form action="{{ad.id}}/update">
+                   <button>Редактировать </button>
+               </form>>
+               {% else %}
+                   <form action="{{ad.id}}/create_answer">
+                   <button>Откликнуться </button>
+               </form>>
+               {% endif %}
 {% endblock content %}

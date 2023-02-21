@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-=ibsifj00q)3)s&7k)1j%we^3ne6t1vjx$lu3g%9w0&)c8ju+&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -44,12 +44,40 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap4',
     'ckeditor_uploader',
+
+    #авторизация
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 LOGIN_REDIRECT_URL = 'ad_list'
-LOGIN_URL = 'login'
+# LOGIN_URL = 'login'
+
+SITE_ID = 1
+
+#вторизация через гугл
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -143,3 +171,30 @@ CKEDITOR_CONFIGS = {
         'toolbar': 'Basic',
     },
 }
+
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'viktorsung'
+EMAIL_HOST_PASSWORD = 'nskvanruhlenkoao' #'PasswordForDjango'
+# EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+DEFAULT_FROM_EMAIL = 'viktorsung@yandex.ru'
+#
+# SERVER_EMAIL = EMAIL_HOST_USER
+
+#формат даты
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+#скип зпдпчи если не сделалась за 60 сек
+APSCHEDULER_RUN_NOW_TIMEOUT = 60
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
