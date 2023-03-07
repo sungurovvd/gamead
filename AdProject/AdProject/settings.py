@@ -182,7 +182,7 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = 'viktorsung'
-EMAIL_HOST_PASSWORD = 'nskvanruhlenkoao' #'PasswordForDjango'
+EMAIL_HOST_PASSWORD = 'oneoff password' 
 # EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
